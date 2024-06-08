@@ -23,7 +23,7 @@ export default function Result() {
             ) : (
                 <div className="flex flex-col items-center">
                     <p>No results found.</p>
-                    <Card company="Hello World" condition="Sexy" price="69" />
+                    <Card company="Hello World" condition="scratches" price="69" />
                 </div>
             )}
         </div>

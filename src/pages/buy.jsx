@@ -3,7 +3,7 @@ import { IoMdSend } from 'react-icons/io';
 import logo from '../assets/logo.png';
 import './buy.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , Link} from 'react-router-dom';
 import Cookies from 'js-cookie';
 import ResponseContext from '../context/ResponseContext';
 
@@ -36,7 +36,7 @@ export default function Buy() {
             setIsClicked(false);
         }
         try {
-            const response = await axios.post('/api/matching-products/', { prompt: text }, {
+            const response = await axios.post('http://127.0.0.1:8000/matching-products/', { "prompt": `"${text}"` }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -59,16 +59,16 @@ export default function Buy() {
             </div>
         ) : (
             <div className="bg-[#09090b] h-screen w-screen text-slate-200 flex flex-col justify-center items-center">
-                <navbar className="flex justify-between items-start w-full absolute top-0">
+                <nav className="flex justify-between items-start w-full absolute top-0">
                     <ul>
-                        <li className="my-2 ml-4">Home{'>'}Chat</li>
+                        <li className="my-2 ml-4"><Link to="/">Home</Link>{'>'}Chat</li>
                     </ul>
                     <ul className="inline-flex ">
                         <li className="m-2"> About </li>
-                        <li className="m-2"> Want to Sell?</li>
+                        <li className="m-2"><Link to="/sell">Want to Sell?</Link></li>
                         <li className="my-2 ml-2 mr-4 cursor-pointer" onClick={handleLogout}> Logout</li>  
                     </ul>
-                </navbar>
+                </nav>
                 <div className="flex flex-row">
                     <h2 className="text-5xl mb-20 font-bold">Welcome to ReVolve</h2>
                     <img src={logo} className="h-14" alt="Logo"/>

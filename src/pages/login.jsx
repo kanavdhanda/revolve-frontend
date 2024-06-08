@@ -83,39 +83,29 @@ export default function Login(){
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if(username=='admin' && password=='admin'){
-            if (rememberMe) {
-                Cookies.set('username', username, { expires: 7 });
-                Cookies.set('password', password, { expires: 7 });
-                Cookies.set('rememberMe', 'true', { expires: 7 });
-            } else {
-                Cookies.remove('username');
-                Cookies.remove('password');
-                Cookies.remove('rememberMe');
-            }
-            navigate('/buy');
-        }
-        else{
+        
         try {
-            const response = await axios.post('/api/login', { username, password });
+            const response = await axios.post('http://127.0.0.1:8000/login/', { username, password });
             if (response.status === 200 ) {
                 if (rememberMe) {
                     Cookies.set('username', username, { expires: 7 });
-                    Cookies.set('password', password, { expires: 7 });
+                     Cookies.set('password', password, { expires: 7 });
                     Cookies.set('rememberMe', 'true', { expires: 7 });
+
                 } else {
-                    Cookies.remove('username');
-                    Cookies.remove('password');
-                    Cookies.remove('rememberMe');
+                     Cookies.remove('username');
+                     Cookies.remove('password');
+                   Cookies.remove('rememberMe');
+
                 }
-                navigate('/buy');
+                navigate('/');
             } else {
                 alert('Login failed');
             }
         } catch (error) {
             console.error(error);
             alert('An error occurred');
-        }}
+        }
     };
 
     return (

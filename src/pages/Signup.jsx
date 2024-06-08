@@ -9,13 +9,20 @@ export default function Signup(){
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const headers = {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
 
+          };
         try {
-            const response = await axios.post('/api/signup', { username, password });
-            if (response.status === 200) {
+            const response = await axios.post('http://127.0.0.1:8000/signup/', { username, password }, { headers});
+            if (response.status === 201) {
                 navigate('/login');
-            } else {
-                alert('Signup failed');
+            } else if(response.status === 400) {
+                alert('User already exists');
+            }
+            else {
+                alert('An error occurred');
             }
         } catch (error) {
             console.error(error);
