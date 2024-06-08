@@ -2,6 +2,9 @@ import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
+import {Route, Navigate} from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 const PrivateRoute = ({ children, path }) => {
   console.log('PrivateRoute');
   const { currentUser } = React.useContext(AuthContext);
@@ -20,3 +23,13 @@ const PrivateRoute = ({ children, path }) => {
 };
 
 export default PrivateRoute;
+
+
+
+PrivateRoute.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
+  path: PropTypes.string.isRequired,
+};

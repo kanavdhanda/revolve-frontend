@@ -1,4 +1,5 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from 'react';
+import PropTypes from 'prop-types';
 
 const ResponseContext = createContext();
 
@@ -13,3 +14,10 @@ export const ResponseProvider = ({ children }) => {
 };
 
 export default ResponseContext;
+
+ResponseProvider.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
+};

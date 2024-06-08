@@ -68,6 +68,7 @@ export default function Login(){
     const [password, setPassword] = useState('');
     const [rememberMe, setRememberMe] = useState(false);
     const navigate = useNavigate();
+  
 
     useEffect(() => {
         if (Cookies.get('rememberMe')) {
@@ -81,6 +82,11 @@ export default function Login(){
         setRememberMe(event.target.checked);
     };
 
+    if (Cookies.get('sessionid')) {
+        // If the user is logged in, redirect them to the home page
+        navigate('/');
+    }
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
         

@@ -33,8 +33,8 @@ export default function Result() {
                     {response.map((item, index) => (
                         <Card
                             key={index}
-                            company={item.company}
-                            condition={item.condition}
+                            company={item.seller_name}
+                            condition={item.item_condition}
                             onClick={() => navigate('/fresult')}
                         />
                     ))}
@@ -42,7 +42,6 @@ export default function Result() {
             ) : (
                 <div className="flex flex-col items-center">
                     <p>No results found.</p>
-                    <Card company="Hello World" condition="scratches" price="69" />
                 </div>
             )}
         </div>
