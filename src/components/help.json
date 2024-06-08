@@ -1,0 +1,25 @@
+{
+    "Number of defects" : "1",
+    "1" : {
+            "Defect" : "scratches",
+            "Number of Processes" : "3",
+          "1" : {
+              "   Process Name" : "Grinding",
+          "Description" : "A mechanical process that uses abrasive wheels to remove material and improve surface finish. Effective for removing scratches, but can generate heat and affect material properties.",
+          "Price" : "\"7,000 - 12,000 per ton\""
+    },
+    "2" : {
+          "Process Name" : "Polishing",
+          "Description" : "An abrasive finishing process that uses fine abrasives to achieve a smooth, reflective surface. More suitable for shallow scratches and improving surface aesthetics.",
+          "Price" : "\"10,000 - 20,000 per ton\""
+    },
+    "3" : {
+          "Process Name" : "Buffing",
+          "Description" : "A finishing process that uses soft materials and fine abrasives to create a highly polished and lustrous surface. Ideal for removing minor imperfections and achieving a mirror-like finish.",
+          "Price" : "\"10,000 - 20,000 per ton\""
+    },
+    "Suggested" : {
+          "Process" : "Polishing",
+          "Carbon" : "35"
+    } } 
+  }

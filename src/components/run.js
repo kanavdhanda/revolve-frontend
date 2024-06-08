@@ -28,14 +28,13 @@ const run = async (input) => {
   try {
       const chatSession = model.startChat({
           generationConfig,
-          history: [
-                  
+          history: [ 
                 ],
       });
 
       const result = await chatSession.sendMessage(input);
-      const responseText = await result.response;
-
+      const responseText = await result.response.text();
+      console.log(responseText);
       // Verify and parse JSON
       const jsonResponse = JSON.parse(responseText);
       return jsonResponse;
@@ -46,3 +45,5 @@ const run = async (input) => {
 };
 
 export default run;
+
+

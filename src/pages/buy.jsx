@@ -36,7 +36,7 @@ export default function Buy() {
             setIsClicked(false);
         }
         try {
-            const response = await axios.post('http://127.0.0.1:8000/matching-products/', { "prompt": `"${text}"` }, {
+            const response = await axios.post('http://127.0.0.1:8000/matching-products/', { "prompt" : text }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

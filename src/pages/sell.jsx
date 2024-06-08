@@ -201,7 +201,7 @@ export default function Sell(){
             <div className="bg-[#09090b] h-screen w-screen text-slate-200 flex flex-col justify-center items-center">
                 <navbar className="flex justify-between items-start w-full absolute top-0">
                     <ul>
-                        <li className="my-2 ml-4">Home{">"}Sell</li>
+                        <li className="my-2 ml-4"><Link to="/">Home</Link>{">"}Sell</li>
                     </ul>
                     <ul className="inline-flex ">
                         <li className="m-2"> About </li>
