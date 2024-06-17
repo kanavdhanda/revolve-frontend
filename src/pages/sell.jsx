@@ -149,6 +149,8 @@
 import { useState } from 'react';
 // import { IoMdSend } from 'react-icons/io';
 // import logo from '../assets/logo.png';
+// import Cookies from 'js-cookie';
+
 import './buy.css';
 import axios from 'axios';
 import { useNavigate , Link } from 'react-router-dom';
@@ -158,7 +160,33 @@ export default function Sell(){
     const [text, setText] = useState('');
     const [condition, setCondition] = useState('');
     const [loading, setLoading] = useState(false);
+      const [image, setImage] = useState(null);
+  const handleFileChange = (event) => {
+    setImage(event.target.files[0]);
+  };
     const navigate = useNavigate();
+    // const formData = new FormData();
+    //   formData.append('image', image);
+    //   formData.append('material', document.getElementById('material').value);
+    //   formData.append('grade', document.getElementById('grade').value);
+    //   formData.append('condition', document.getElementById('condition').value);
+    //   formData.append('weight', document.getElementById('weight').value);
+    
+    //   try {
+    //     // Send POST request to your DRF API
+    //     const response = await axios.post('http://your-drf-api.com/upload', formData, {
+    //       headers: {
+    //         'Content-Type': 'multipart/form-data'
+    //       }
+    //     });
+    
+    //     // Handle response
+    //     console.log('Image and form data uploaded successfully!', response.data);
+    //   } catch (error) {
+    //     // Handle errors
+    //     console.log('An error occurred while uploading the image and form data.', error);
+    //   }
+    // };
 
     const handleLogout = () => {
         Cookies.remove('username');
@@ -166,21 +194,33 @@ export default function Sell(){
         Cookies.remove('rememberMe');
         navigate('/login');
     };
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+   const seller_name = Cookies.get('username');
+
+      const formData = new FormData();
+      formData.append('image', image);
+      formData.append('material', document.getElementById('material').value);
+      formData.append('grade', document.getElementById('grade').value);
+      formData.append('condition', document.getElementById('condition').value);
+      formData.append('weight', document.getElementById('weight').value);
+      formData.append('seller', seller_name);
         
         try {
-            const response = await axios.post('http://127.0.0.1:8000/sell/', { 
-                text, 
-                condition 
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+            const response = await axios.post('http://127.0.0.1:8000/sell/', 
+                formData
+            // , {headers : { 
+            //     'Content-Type': 'multipart/form-data'
+            //   }
+
+
+            // },
+                );
             console.log(response.data);
+            alert('Post successuful')
             setText('');
             setCondition('');
         } catch (error) {
@@ -199,7 +239,7 @@ export default function Sell(){
             </div>
         ) : (
             <div className="bg-[#09090b] h-screen w-screen text-slate-200 flex flex-col justify-center items-center">
-                <navbar className="flex justify-between items-start w-full absolute top-0">
+                <nav className="flex justify-between items-start w-full absolute top-0">
                     <ul>
                         <li className="my-2 ml-4"><Link to="/">Home</Link>{">"}Sell</li>
                     </ul>
@@ -208,7 +248,7 @@ export default function Sell(){
                         <li className="m-2"> <Link to="/buy">Want to Buy?</Link></li>
                         <li className="my-2 ml-2 mr-4 cursor-pointer" onClick={handleLogout}> Logout</li>  
                     </ul>
-                </navbar>
+                </nav>
                 {/* <div className="flex flex-row">
                     <h2 className="text-5xl mb-20 font-bold">Welcome to ReVolve</h2>
                     <img src={logo} className="h-14" alt="Logo"/>
@@ -308,7 +348,7 @@ export default function Sell(){
               <button className="w-3/12 border-gray-800 border-2 rounded-lg h-10 ">Submit</button>
                   </div>
 
-                  {/* <input type="file" accept="image/*" className="w-full" onChange={handleFileChange} /> */}
+                  <input type="file" accept="image/*" className="w-full my-2 " onChange={handleFileChange} />
                   </div>
               </div>
 

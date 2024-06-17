@@ -12,7 +12,7 @@ import { ResponseProvider } from './context/ResponseContext';
 
 function App() {
     const isAuthenticated = Cookies.get('username') && Cookies.get('password');
-
+    
     return (
         <ResponseProvider>
             <Router>

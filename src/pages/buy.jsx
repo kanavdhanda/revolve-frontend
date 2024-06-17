@@ -42,6 +42,7 @@ export default function Buy() {
                 }
             });
             setResponse(response.data);
+            console.log(response.data);
             navigate('/result');
             setText('');
         } catch (error) {

@@ -6,13 +6,15 @@ import Cookies from 'js-cookie';
 export default function Fresult() {
     const { response } = useContext(ResponseContext);
     const navigate = useNavigate();
-
+        
     const handleLogout = () => {
         Cookies.remove('username');
         Cookies.remove('password');
         Cookies.remove('rememberMe');
         navigate('/login');
     };
+
+    const handleClick = () => { navigate('/') }
 
     if (!response) {
         return (
@@ -99,7 +101,10 @@ export default function Fresult() {
                                 <p className="font-semibold">Suggested Process: {defect.Suggested['Process']}</p>
                                 <p>Carbon Emission Scale: {defect.Suggested['Carbon']}</p>
                             </div>
+
+                            <button className="justify-center" onClick={handleClick}>Contact Details</button>
                         </div>
+
                     );
                 })}
                 </div>
